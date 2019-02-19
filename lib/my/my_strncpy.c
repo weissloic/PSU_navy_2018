@@ -7,5 +7,13 @@
 
 char *my_strncpy(char *dest, char const *src, int n)
 {
-    return (0);
+    int i = 0;
+
+    for (i; src[i] != '\0'; i++) {
+        if (n > 0) {
+            dest[i] = src[i];
+            n--;
+        }
+    }
+    return (dest);
 }

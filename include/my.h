@@ -4,38 +4,39 @@
 ** File description:
 ** my h
 */
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <dirent.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <SFML/System/InputStream.h>
-#include <stddef.h>
-#include <SFML/Window/Export.h>
-#include <SFML/Window/Types.h>
-#include <SFML/System/Vector2.h>
-#include <SFML/Config.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <SFML/Audio.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window/Export.h>
-#include <SFML/Window/Types.h>
-#include <SFML/System/Vector2.h>
-#include <SFML/Window.h>
 #include <unistd.h>
+#include <sys/sysmacros.h>
+#include <string.h>
+#include <errno.h>
 
 #ifndef MY_H_
 #define MY_H_
 
-typedef struct button {
-    sfRectangleShape *rect;
-    sfRectangleShape *win;
-    sfRectangleShape *lose;
-    sfRenderWindow* window;
-    sfEvent event;
-    sfSprite *backone;
+typedef struct mysh {
+    char **path;
+    int e;
+    char **tmp;
+    char *command;
+    char *file;
+    char *pwd;
+    int line;
+    char *home;
+    int c;
+    char *buffer;
+    char **test;
     int count;
-    sfSprite *backtwo;
-} button_t;
+    int pathline;
+    int letter;
+    int i;
+} mysh_t;
 
 void my_putchar(char c);
 int my_isneg(int nb);
@@ -66,11 +67,50 @@ int my_showstr(char const *str);
 int my_showmem(char const *str, int size);
 char *my_strcat(char *dest, char const *src);
 char *my_strncat(char *dest, char const *src, int nb);
-void init_button(button_t *button, sfVector2f position, sfVector2f size);
-void print_hello(void);
-int button_is_clicked(button_t *button, sfVector2i click_position);
-int create_backone(button_t *button);
-int create_backtwo(button_t *button);
-int close_window(button_t *button);
-int next_scene(button_t *button);
+int my_printf(char *s, ...);
+void display_int(va_list ap);
+void display_string(va_list ap);
+void display_char(va_list ap);
+void display_pointer(va_list ap);
+int convert_tobase(int nbr, char* base);
+void convert_to_bin(va_list ap);
+void convert_to_octo(va_list ap);
+void convert_to_hexa(va_list ap);
+void convert_to_mhexa(va_list ap);
+void display_unsigned(va_list ap);
+long my_put_long_nbr(long nb);
+unsigned int my_put_unsigned_nbr(unsigned int nb);
+int my_put_unsigned_str(char const *str);
+void display_unprintable(va_list ap);
+void display_percentage();
+int find_path(char **new_envp, mysh_t *m);
+int create_path_array(char **new_envp, mysh_t *m);
+int create_tmp_array(char **new_envp, mysh_t *m);
+int get_command(mysh_t *m, char **new_envp);
+int concatenate_command(mysh_t *m);
+int find_flag_one(mysh_t *m, char **new_envp);
+int find_flag_two(mysh_t *m, char **new_envp);
+int get_file(mysh_t *m, char *buffer);
+int execute_command(mysh_t *m, char *buffer, char **new_envp);
+int find_flag_three(mysh_t *m, char *buffer, char **new_envp);
+int find_home(mysh_t *m, char **new_envp);
+int retrieve_home(mysh_t *m, char **new_envp);
+void stock_args(mysh_t *m, char *buffer);
+int count_space(char *str);
+int count_path(char *str);
+int count_command(mysh_t *m, char *buffer);
+int count_file(mysh_t *m, char *buffer);
+char *delete_tabs(char *str);
+int env_flags(mysh_t *m, char *buffer);
+static void (*ptr1[9])(va_list) = {
+    &display_int,
+    &display_int,
+    &convert_to_octo,
+    &convert_to_hexa,
+    &convert_to_mhexa,
+    &display_char,
+    &display_string,
+    &convert_to_bin,
+    &display_percentage,
+};
 #endif
