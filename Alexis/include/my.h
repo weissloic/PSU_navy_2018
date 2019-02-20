@@ -70,6 +70,12 @@ int my_put_unsigned_str(char const *str);
 void display_unprintable(va_list ap);
 void display_percentage();
 char *find_my_file(char *filepath);
+int my_strbackslashlen(char *str);
+int check_boats(char **tab);
+int check_points(char **tab);
+int check_first(char **tab);
+int check_last(char **tab);
+int check_errors(char **tab);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,

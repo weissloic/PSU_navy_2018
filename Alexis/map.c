@@ -15,14 +15,17 @@ char *find_my_file(char *filepath)
 {
     int fd;
     fd = open("navy_positions.txt", O_RDONLY);
-    char *buffer = malloc(sizeof(char) * 47);
+    char *buffer = malloc(sizeof(char) * 32);
 
     if (fd == -1) {
         my_putstr("Error with open\n");
         return (84);
     }
-    read(fd, buffer, 47);
-    buffer[46] = '\0';
+    read(fd, buffer, 31);
+    buffer[32] = '\0';
+    if (my_strbackslashlen(buffer) != 7) {
+        return (84);
+    }
     return (buffer);
 }
 
@@ -36,25 +39,31 @@ void find_positions(char *filepath)
     for (int i = 0; i != 5; i++) {
         map[i] = malloc(sizeof(char) * 3);
     }
-    for (int g = 0; g != 30; g++) {
-        if (buffer[g] >= 30 && buffer[g] <= 39)
-            printf("%c\n", buffer[g - 1]);
-        if (buffer[g] >= 30 && buffer[g] <= 39 && buffer[g - 1] >= 41 && buffer[g - 1] <= 48) {
+    for (int i = 0; i != my_strlen(buffer); i++) {
+        if (buffer[i] == '\n') {
+            line++;
+            cols = 0;
+        } else {
+            map[line][cols] = buffer[i];
             cols++;
-            map[line][cols - 1] = buffer[g - 1];
-            map[line][cols] = buffer[g];
-            line++;
-            cols = 0;
-            printf("ok\n");
-        } else if (buffer[g] >= 30 && buffer[g] <= 39 && buffer[g - 1] == ' ') {
-            map[line][cols] = buffer[g];
-            line++;
-            cols = 0;
         }
     }
-    for (int k = 0; k != 3; k++) {
-        printf("%s\n", map[k]);
+    if (check_errors(map) == 84) {
+        return (84);
     }
+    for (int i = 0; i != 4; i++) {
+        printf("%s\n", map[i]);
+    }
+}
+
+int my_strbackslashlen(char *str)
+{
+    int count = 0;
+
+    for (int i = 0; str[i] != '\n'; i++) {
+        count++;
+    }
+    return (count);
 }
 
 int main(void)

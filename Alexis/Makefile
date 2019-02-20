@@ -7,7 +7,8 @@
 
 GCC=            gcc
 
-SRC=		map.c
+SRC=		map.c\
+			errors.c
 
 LIB=		-Llib/my/ -lmy
 
