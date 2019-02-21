@@ -22,6 +22,9 @@
 
 typedef struct navy {
     char **boats;
+    char **create_map;
+    int vertical;
+    int horizontal;
 } navy_t;
 
 void my_putchar(char c);
@@ -80,6 +83,8 @@ int horizontal_positions(char **tab);
 int my_get_nboatr(char *str);
 int vertical_positions(char **tab);
 int diagonal_positions(char **tab);
+int check_final_square(char **tab);
+int check_last_two(char **tab);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,

@@ -23,13 +23,10 @@ char *find_my_file(char *filepath)
     }
     read(fd, buffer, 31);
     buffer[32] = '\0';
-    if (my_strbackslashlen(buffer) != 7) {
-        return (84);
-    }
     return (buffer);
 }
 
-void find_positions(char *filepath)
+char **find_positions(char *filepath)
 {
     char **map = malloc(sizeof(char*) * 12);
     char *buffer = find_my_file(filepath);
@@ -51,9 +48,7 @@ void find_positions(char *filepath)
     if (check_errors(map) == 84) {
         return (84);
     }
-    for (int i = 0; i != 4; i++) {
-        printf("%s\n", map[i]);
-    }
+    return (map);
 }
 
 int my_strbackslashlen(char *str)
@@ -68,5 +63,12 @@ int my_strbackslashlen(char *str)
 
 int main(void)
 {
-    find_positions("navy_positions.txt");
+    navy_t *navy = malloc(sizeof(navy_t));
+    char **map;
+
+    print_map(navy);
+    map = find_positions("navy_positions.txt");
+    put_my_boats(navy, map);
+    for (int y = 0; y < 10; y++)
+        printf("%s\n", navy->create_map[y]);
 }

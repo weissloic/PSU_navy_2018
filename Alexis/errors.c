@@ -28,19 +28,8 @@ int check_points(char **tab)
 int check_first(char **tab)
 {
     for (int i = 0; i != 4; i++) {
-        if (tab[i][2] >= 'A' && tab[i][2] <= 'H' || tab[i][5] >= 'A' && tab[i][5] <= 'H') {
+        if (tab[i][2] >= 'A' && tab[i][2] <= 'H') {
             horizontal_positions(tab);
-        } else {
-            return (84);
-        }
-    }
-}
-
-int check_last(char **tab)
-{
-    for (int i = 0; i != 3; i++) {
-        if (tab[i][3] > 49 && tab[i][3] < 56 || tab[i][6] > 49 && tab[i][6] < 56) {
-            vertical_positions(tab);
         } else {
             return (84);
         }
@@ -53,9 +42,9 @@ int check_errors(char **tab)
         return (84);
     }
     check_points(tab);
-    check_first(tab);
-    if (check_last(tab) == 84) {
+    if (check_first(tab) == 84) {
         return (84);
     }
+    check_final_square(tab);
     diagonal_positions(tab);
 }

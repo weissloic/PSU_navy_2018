@@ -9,7 +9,10 @@ GCC=            gcc
 
 SRC=		map.c\
 			errors.c\
-			positions_errors.c
+			positions_errors.c\
+			square.c\
+			main.c\
+			boats.c
 
 LIB=		-Llib/my/ -lmy
 
