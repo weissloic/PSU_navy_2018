@@ -8,7 +8,8 @@
 GCC=            gcc
 
 SRC=		map.c\
-			errors.c
+			errors.c\
+			positions_errors.c
 
 LIB=		-Llib/my/ -lmy
 
@@ -18,7 +19,7 @@ CSFML=		-lcsfml-graphics -lcsfml-audio -lcsfml-window -lcsfml-system
 
 OBJ=            $(SRC:.c)
 
-NAME=          	my_defender
+NAME=          	navy
 
 all:            $(NAME)
 
