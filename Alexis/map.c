@@ -15,7 +15,7 @@ char *find_my_file(char *filepath)
 {
     int fd;
     fd = open("navy_positions.txt", O_RDONLY);
-    char *buffer = malloc(sizeof(char) * 32);
+    char *buffer = malloc(sizeof(char) * 100);
 
     if (fd == -1) {
         my_putstr("Error with open\n");
