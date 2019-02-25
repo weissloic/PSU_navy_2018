@@ -14,7 +14,7 @@
 char *find_my_file(char *filepath)
 {
     int fd;
-    fd = open("navy_positions.txt", O_RDONLY);
+    fd = open(filepath, O_RDONLY);
     char *buffer = malloc(sizeof(char) * 100);
 
     if (fd == -1) {
@@ -26,13 +26,25 @@ char *find_my_file(char *filepath)
     return (buffer);
 }
 
-char **find_positions(char *filepath)
+char **find_positions(char *filepath, navy_t *navy)
 {
     char **map = malloc(sizeof(char*) * 12);
     char *buffer = find_my_file(filepath);
     int line = 0;
     int cols = 0;
+    char **position = malloc(sizeof(char *) * 10);
+    navy->value_one = malloc(sizeof(int *) * 4);
+    navy->value_two = malloc(sizeof(int *) * 4);
 
+    for (int i = 0; i != 3; i++) {
+        navy->value_one[i] = malloc(sizeof(int) * 4);
+    }
+    for (int i = 0; i != 3; i++) {
+        navy->value_two[i] = malloc(sizeof(int) * 4);
+    }
+    for (int i = 0; i != 5; i++) {
+        position[i] = malloc(sizeof(char) * 3);
+    }
     for (int i = 0; i != 5; i++) {
         map[i] = malloc(sizeof(char) * 3);
     }
@@ -48,6 +60,13 @@ char **find_positions(char *filepath)
     if (check_errors(map) == 84) {
         return (84);
     }
+    position = cpy_array(position, map);
+
+    char contains_letter[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    int contains_number[] = {2, 4, 6, 8, 10, 12, 14, 16};
+    
+    cpy_first_letter(contains_number, contains_letter, navy, position);
+    cpy_second_letter(contains_number, contains_letter, navy, position);
     return (map);
 }
 
@@ -61,13 +80,13 @@ int my_strbackslashlen(char *str)
     return (count);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     navy_t *navy = malloc(sizeof(navy_t));
     char **map;
 
     print_map(navy);
-    map = find_positions("navy_positions.txt");
+    map = find_positions(av[1], navy);
     put_my_boats(navy, map);
     for (int y = 0; y < 10; y++)
         printf("%s\n", navy->create_map[y]);

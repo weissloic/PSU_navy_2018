@@ -25,6 +25,8 @@ typedef struct navy {
     char **create_map;
     int vertical;
     int horizontal;
+    int **value_one;
+    int **value_two;
 } navy_t;
 
 void my_putchar(char c);
@@ -85,6 +87,9 @@ int vertical_positions(char **tab);
 int diagonal_positions(char **tab);
 int check_final_square(char **tab);
 int check_last_two(char **tab);
+void cpy_first_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
+void cpy_second_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
+int my_getarraynbr(char *str, int nbr);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,

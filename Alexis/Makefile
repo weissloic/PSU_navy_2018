@@ -12,7 +12,8 @@ SRC=		map.c\
 			positions_errors.c\
 			square.c\
 			main.c\
-			boats.c
+			boats.c\
+			pipapo.c
 
 LIB=		-Llib/my/ -lmy
 

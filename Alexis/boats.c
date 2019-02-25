@@ -8,90 +8,41 @@
 
 int put_first_square(navy_t *navy, int x, int y, char boat)
 {
-    navy->create_map[x + 1][y * 2] = boat;
+    navy->create_map[x + 1][y] = boat;
 }
 
 int put_second_square(navy_t *navy, int x, int y, char boat)
 {
-    navy->create_map[x + 1][y * 2] = boat;
+    navy->create_map[x + 1][y] = boat;
 }
 
-int first_blocks(navy_t *navy, int x1, int y1, int x2, int y2, char boat, char **tab)
+int first_blocks(navy_t *navy, char boat, int nbr)
 {
-    put_first_square(navy, x1, y1, boat);
-    put_second_square(navy, x2, y2, boat);
+    put_first_square(navy, navy->value_one[1][nbr], navy->value_one[0][nbr], boat);
+    put_second_square(navy, navy->value_two[1][nbr], navy->value_two[0][nbr], boat);
 }
 
-int check_sens(navy_t *navy, int i, char **tab, int x1, int y1, int x2, int y2)
+int check_sens(navy_t *navy, int nbr)
 {
-    if (y1 != y2) {
+    if (navy->value_one[0][nbr] != navy->value_two[0][nbr]) {
         navy->horizontal++;
     } else {
         navy->vertical++;
     }
 }
 
-int first_boat(navy_t *navy, int x1, int y1, int x2, int y2, char boat, char **tab)
+int first_boat(navy_t *navy, char boat, int nbr)
 {
-    check_sens(navy, 0, tab, x1, y1, x1, y2);
+    check_sens(navy, nbr);
     if (navy->horizontal == 1) {
-        for (int i = y1; i != y2; i++) {
-            navy->create_map[x1 + 1][i * 2] = boat;
+        for (int i = navy->value_one[0][nbr] / 2; i != navy->value_two[0][nbr] / 2; i++) {
+            navy->create_map[navy->value_one[1][nbr] + 1][i * 2] = boat;
+            printf("%d\n", navy->value_one[0][nbr]);
         }
         navy->horizontal = 0;
     } else if (navy->vertical == 1) {
-        for (int i = x1; i != x2; i++) {
-            navy->create_map[i + 1][y1 * 2] = boat;
-            printf("%d\n", i + 1);
-            printf("%d\n", y1 + 2);
-        }
-        navy->vertical = 0;
-    }
-}
-
-int second_boat(navy_t *navy, int x1, int x2, int y1, int y2, char boat, char **tab)
-{
-    check_sens(navy, 1, tab, x1, y1, x1, y2);
-    if (navy->horizontal == 1) {
-        for (int i = y1; i != y2; i++) {
-            navy->create_map[x1 + 1][i * 2] = boat;
-        }
-        navy->horizontal = 0;
-    } else if (navy->vertical == 1) {
-        for (int i = x1; i != x2; i++) {
-            navy->create_map[i + 1][y1 + 2] = boat;
-        }
-        navy->vertical = 0;
-    }
-}
-
-int third_boat(navy_t *navy, int x1, int x2, int y1, int y2, char boat, char **tab)
-{
-    check_sens(navy, 2, tab, x1, y1, x1, y2);
-    if (navy->horizontal == 1) {
-        for (int i = y1; i != y2; i++) {
-            navy->create_map[x1 + 1][i * 2] = boat;
-        }
-        navy->horizontal = 0;
-    } else if (navy->vertical == 1) {
-        for (int i = x1; i != x2; i++) {
-            navy->create_map[i + 1][y1 + 2] = boat;
-        }
-        navy->vertical = 0;
-    }
-}
-
-int fourth_boat(navy_t *navy, int x1, int x2, int y1, int y2, char boat, char **tab)
-{
-    check_sens(navy, 3, tab, x1, y1, x1, y2);
-    if (navy->horizontal == 1) {
-        for (int i = y1; i != y2; i++) {
-            navy->create_map[x1 + 1][i * 2] = boat;
-        }
-        navy->horizontal = 0;
-    } else if (navy->vertical == 1) {
-        for (int i = x1; i != x2; i++) {
-            navy->create_map[i + 1][y1 + 2] = boat;
+        for (int i = navy->value_one[1][nbr]; i != navy->value_two[1][nbr]; i++) {
+            navy->create_map[i + 1][navy->value_one[0][nbr]] = boat;
         }
         navy->vertical = 0;
     }
@@ -99,12 +50,12 @@ int fourth_boat(navy_t *navy, int x1, int x2, int y1, int y2, char boat, char **
 
 int put_my_boats(navy_t *navy, char **tab)
 {
-    first_blocks(navy, 2, 3, 2, 4, '2', tab);
-    first_boat(navy, 2, 3, 2, 4, '2', tab);
-    first_blocks(navy, 2, 2, 4, 2, '3', tab);
-    first_boat(navy, 2, 2, 4, 2, '3', tab);
-    first_blocks(navy, 1, 7, 4, 7, '4', tab);
-    first_boat(navy, 1, 7, 4, 7, '4', tab);
-    first_blocks(navy, 6, 3, 6, 7, '5', tab);
-    first_boat(navy, 6, 3, 6, 7, '5', tab);
+    first_blocks(navy, '2', 0);
+    first_boat(navy, '2', 0);
+    first_blocks(navy, '3', 1);
+    first_boat(navy, '3', 1);
+    first_blocks(navy, '4', 2);
+    first_boat(navy, '4', 2);
+    first_blocks(navy, '5', 3);
+    first_boat(navy, '5', 3);
 }
