@@ -82,12 +82,27 @@ int my_strbackslashlen(char *str)
 
 int main(int ac, char **av)
 {
+    char *s = NULL;
+    s = get_next_line(0);
     navy_t *navy = malloc(sizeof(navy_t));
     char **map;
 
     print_map(navy);
     map = find_positions(av[1], navy);
     put_my_boats(navy, map);
-    for (int y = 0; y < 10; y++)
-        printf("%s\n", navy->create_map[y]);
+
+    while (1) {
+        if (s[0] != 65 && s[0] != 66 && s[0] != 67 && s[0] != 68 && s[0] != 69 && s[0] != 70 && s[0] != 71 && s[0] != 72)
+            my_printf("Wrong position\n");
+        if (s[1] != 49 && s[1] != 50 && s[1] != 51 && s[1] != 52 && s[1] != 53 && s[1] != 54 && s[1] != 55 && s[1] != 56)
+            my_printf("Wrong position");
+        if (my_strlen(s) != 2) {
+            return (84);
+        }
+        for (int y = 0; y < 10; y++) {
+            printf("%s\n", navy->create_map[y]);
+        }
+        s = get_next_line(0);
+    }
+    return(0);
 }

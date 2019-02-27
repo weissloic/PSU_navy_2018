@@ -19,6 +19,7 @@
 
 #ifndef MY_H_
 #define MY_H_
+#define READ_SIZE 80
 
 typedef struct navy {
     char **boats;

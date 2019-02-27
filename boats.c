@@ -37,7 +37,6 @@ int first_boat(navy_t *navy, char boat, int nbr)
     if (navy->horizontal == 1) {
         for (int i = navy->value_one[0][nbr] / 2; i != navy->value_two[0][nbr] / 2; i++) {
             navy->create_map[navy->value_one[1][nbr] + 1][i * 2] = boat;
-            printf("%d\n", navy->value_one[0][nbr]);
         }
         navy->horizontal = 0;
     } else if (navy->vertical == 1) {
