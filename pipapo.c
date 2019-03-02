@@ -30,7 +30,7 @@ void cpy_second_letter(int *contains_number, char *contains_letter, navy_t *navy
     }
 }
 
-char *cpy_array(char **position, char **map)
+char **cpy_array(char **position, char **map)
 {
     int o = 0;
     int test = 0;

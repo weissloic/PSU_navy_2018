@@ -13,7 +13,10 @@ SRC=		map.c\
 			square.c\
 			main.c\
 			boats.c\
-			pipapo.c
+			pipapo.c\
+			empty.c\
+			game.c\
+			attack.c
 
 LIB=		-Llib/my/ -lmy
 

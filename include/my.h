@@ -24,10 +24,14 @@
 typedef struct navy {
     char **boats;
     char **create_map;
+    char **create_empty_map;
     int vertical;
     int horizontal;
     int **value_one;
     int **value_two;
+    int x;
+    int y;
+    int turn;
 } navy_t;
 
 void my_putchar(char c);
@@ -91,6 +95,21 @@ int check_last_two(char **tab);
 void cpy_first_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
 void cpy_second_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
 int my_getarraynbr(char *str, int nbr);
+char *get_next_line(int fd);
+char **cpy_array(char **position, char **map);
+int put_my_boats(navy_t *navy, char **tab);
+void print_map(navy_t *navy);
+void fill_map_three2(navy_t *navy);
+void fill_map_two2(navy_t *navy);
+void fill_map_one2(navy_t *navy);
+void print_empty(navy_t *navy);
+int print_game_boards(navy_t *navy);
+int attack_turn(navy_t *navy);
+char *check_shot(navy_t *navy, char *shot);
+int get_position(navy_t *navy);
+void print_result(navy_t *navy, char *shot);
+void wrong_position(navy_t *navy, char *s);
+int find_error(navy_t *navy, char *s);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,
