@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+global_t *game;
+
 char *find_my_file(char *filepath)
 {
     int fd;
@@ -24,6 +26,21 @@ char *find_my_file(char *filepath)
     read(fd, buffer, 31);
     buffer[32] = '\0';
     return (buffer);
+}
+
+void handler(int signal, siginfo_t *info, void *context)
+{
+    if (signal == SIGUSR1) {
+        my_printf("TESTA");
+    }
+    if (signal == SIGUSR2) {
+        game->connect_or_not++;
+        game->counter++;
+        //if (game->connect_or_not == 1)
+            //my_printf("GG connected");
+    }
+    //game->counter = 0;
+    game->pid_glob = info->si_pid;
 }
 
 char **find_positions(char *filepath, navy_t *navy)
@@ -83,20 +100,60 @@ int my_strbackslashlen(char *str)
 int main(int ac, char **av)
 {
     navy_t *navy = malloc(sizeof(navy_t));
+    game = malloc(sizeof(global_t));
     char **map;
     navy->turn = 0;
     navy->ac = ac;
+    int producer_pid = 0;
+    game->counter = 0;
 
-    print_map(navy);
-    print_empty(navy);
-    map = find_positions(av[1], navy);
-    if (find_positions(av[1], navy) == 84) {
-        return (84);
-    }
-    put_my_boats(navy, map);
+    struct sigaction act;
+    
+    game->pid_glob = 0;
+    game->counter = 0;
+    game->connect_or_not = 0;
+    act.sa_sigaction = &handler;
 
-    while (1) {
-        attack_turn(navy) == 0;
+    act.sa_flags = SA_SIGINFO;
+    sigaction(SIGUSR1, &act, NULL);
+    sigaction(SIGUSR2, &act, NULL);
+
+    if (ac == 3) {
+        producer_pid = my_getnbr(av[1]);
+        kill(producer_pid, SIGUSR2);
+        //game->counter++;
+        print_map(navy);
+        print_empty(navy);
+        map = find_positions(av[2], navy);
+        if (find_positions(av[2], navy) == 84) {
+            return (84);
+        }
+        put_my_boats(navy, map);
+
+        while (1) {
+            attack_turn(navy) == 0;
+        }
+        return(0);
     }
-    return(0);
+    else {
+        my_printf("pid = %d\n", getpid());
+        my_printf("Waiting for ennemy connections\n");
+
+        while (1) {
+            if (game->counter == 1) {
+            print_map(navy);
+            print_empty(navy);
+            map = find_positions(av[1], navy);
+            if (find_positions(av[1], navy) == 84) {
+                return (84);
+            }
+            put_my_boats(navy, map);
+
+            while (1) {
+                attack_turn(navy) == 0;
+            }
+            return(0);
+        }
+    }
+}
 }

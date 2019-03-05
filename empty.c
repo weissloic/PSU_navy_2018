@@ -73,10 +73,11 @@ void print_empty(navy_t *navy)
     fill_map_three2(navy);
 }
 
-void wrong_position(navy_t *navy, char *s)
+char  *wrong_position(navy_t *navy, char *s)
 {
     my_printf("Wrong position\n");
     my_printf("attack: ");
     s = get_next_line(0);
-    find_error(navy, s);
+    s= find_error(navy, s);
+    return (s);
 }

@@ -13,7 +13,7 @@ int get_position(navy_t *navy)
 
     my_printf("attack: ");
     s = get_next_line(0);
-    find_error(navy, s);
+    s = find_error(navy, s);
     print_result(navy, s);
 }
 

@@ -16,10 +16,22 @@
 #include <sys/sysmacros.h>
 #include <string.h>
 #include <errno.h>
+#include <signal.h>
 
 #ifndef MY_H_
 #define MY_H_
 #define READ_SIZE 80
+
+typedef struct global_t {
+    int pid_glob;
+    int var_x;
+    int var_y;
+    int counter;
+    int loop;
+    int connect_or_not;
+}global_t;
+
+extern global_t *game;
 
 typedef struct navy {
     char **boats;
@@ -109,8 +121,8 @@ int attack_turn(navy_t *navy);
 int check_shot(navy_t *navy, char *shot);
 int get_position(navy_t *navy);
 void print_result(navy_t *navy, char *shot);
-void wrong_position(navy_t *navy, char *s);
-int find_error(navy_t *navy, char *s);
+char *wrong_position(navy_t *navy, char *s);
+char *find_error(navy_t *navy, char *s);
 int find_win(navy_t *navy);
 int first_blocks(navy_t *navy, char boat, int nbr);
 int first_boat(navy_t *navy, char boat, int nbr);
