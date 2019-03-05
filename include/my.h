@@ -93,8 +93,8 @@ int vertical_positions(char **tab);
 int diagonal_positions(char **tab);
 int check_final_square(char **tab);
 int check_last_two(char **tab);
-void cpy_first_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
-void cpy_second_letter(int *contains_number, char *contains_letter, navy_t *navy, char **position);
+void cpy_first_letter(int *number, char *letter, navy_t *navy, char **pos);
+void cpy_second_letter(int *number, char *letter, navy_t *navy, char **pos);
 int my_getarraynbr(char *str, int nbr);
 char *get_next_line(int fd);
 char **cpy_array(char **position, char **map);
@@ -106,12 +106,14 @@ void fill_map_one2(navy_t *navy);
 void print_empty(navy_t *navy);
 int print_game_boards(navy_t *navy);
 int attack_turn(navy_t *navy);
-char *check_shot(navy_t *navy, char *shot);
+int check_shot(navy_t *navy, char *shot);
 int get_position(navy_t *navy);
 void print_result(navy_t *navy, char *shot);
 void wrong_position(navy_t *navy, char *s);
 int find_error(navy_t *navy, char *s);
 int find_win(navy_t *navy);
+int first_blocks(navy_t *navy, char boat, int nbr);
+int first_boat(navy_t *navy, char boat, int nbr);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,

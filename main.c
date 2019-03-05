@@ -33,12 +33,6 @@ void fill_map_one(navy_t *navy)
 
 void fill_map_two(navy_t *navy)
 {
-    navy->create_empty_map = malloc(sizeof(char *) * 18);
-
-    for (int i = 0; i < 18; i++) {
-        navy->create_empty_map[i] = malloc(sizeof(char) * 11);
-    }
-
     for (int i = 2; i != 17; i++)
         navy->create_map[1][i] = '-';
     navy->create_map[1][18] = '\n';

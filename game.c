@@ -40,7 +40,7 @@ int attack_turn(navy_t *navy)
     get_position(navy);
 }
 
-char *check_shot(navy_t *navy, char *shot)
+int check_shot(navy_t *navy, char *shot)
 {
     int check = 0;
     int x = 0;

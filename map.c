@@ -90,6 +90,9 @@ int main(int ac, char **av)
     print_map(navy);
     print_empty(navy);
     map = find_positions(av[1], navy);
+    if (find_positions(av[1], navy) == 84) {
+        return (84);
+    }
     put_my_boats(navy, map);
 
     while (1) {

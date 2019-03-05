@@ -8,12 +8,6 @@
 
 void fill_map_one2(navy_t *navy)
 {
-    navy->create_empty_map = malloc(sizeof(char *) * 18);
-
-    for (int i = 0; i < 18; i++) {
-        navy->create_empty_map[i] = malloc(sizeof(char) * 11);
-    }
-
     navy->create_empty_map[0][0] = ' ';
     navy->create_empty_map[0][1] = '|';
     navy->create_empty_map[0][2] = 'A';

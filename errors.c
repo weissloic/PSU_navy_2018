@@ -9,7 +9,8 @@
 int check_boats(char **tab)
 {
     for (int i = 0; i != 4; i++) {
-        if (tab[i][0] == 50 || tab[i][0] == 51 || tab[i][0] == 52 || tab[i][0] == 53) {
+        if (tab[i][0] == 50 || tab[i][0] == 51 || tab[i][0] == 
+        52 || tab[i][0] == 53) {
         } else {
             return (84);
         }
@@ -22,7 +23,7 @@ int check_points(char **tab)
         if (tab[i][1] != ':' || tab[i][4] != ':') {
             return (84);
         }
-    }  
+    }
 }
 
 int check_first(char **tab)
