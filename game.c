@@ -13,6 +13,9 @@ int get_position(navy_t *navy)
 
     my_printf("attack: ");
     s = get_next_line(0);
+    if (s == NULL) {
+        return (84);
+    }
     s = find_error(navy, s);
     print_result(navy, s);
 }
@@ -37,7 +40,9 @@ int print_game_boards(navy_t *navy)
 int attack_turn(navy_t *navy)
 {
     print_game_boards(navy);
-    get_position(navy);
+    if (get_position(navy) == 84) {
+        return (84);
+    }
 }
 
 int check_shot(navy_t *navy, char *shot)

@@ -131,7 +131,9 @@ int main(int ac, char **av)
         put_my_boats(navy, map);
 
         while (1) {
-            attack_turn(navy) == 0;
+            if (attack_turn(navy) == 84) {
+                return (84);
+            }
         }
         return(0);
     }
@@ -150,7 +152,9 @@ int main(int ac, char **av)
             put_my_boats(navy, map);
 
             while (1) {
-                attack_turn(navy) == 0;
+                if (attack_turn(navy) == 84) {
+                    return (84);
+                }
             }
             return(0);
         }
