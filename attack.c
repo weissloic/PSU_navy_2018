@@ -18,3 +18,21 @@ int find_error(navy_t *navy, char *s)
         wrong_position(navy, s);
     }
 }
+
+int find_win(navy_t *navy)
+{
+    int nbr = 0;
+
+    for (int i = 0; i != 10; i++) {
+        for (int j = 2; navy->create_map[i][j] != '\0'; j++) {
+            if (navy->create_map[i][j] >= '0' && navy->create_map[i][j] <= '9') {
+                nbr++;
+            }
+        }
+    }
+    if (nbr == 0) {
+        my_printf("I lost");
+        return (0);
+    }
+    return (1);
+}

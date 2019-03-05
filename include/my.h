@@ -32,6 +32,7 @@ typedef struct navy {
     int x;
     int y;
     int turn;
+    int ac;
 } navy_t;
 
 void my_putchar(char c);
@@ -110,6 +111,7 @@ int get_position(navy_t *navy);
 void print_result(navy_t *navy, char *shot);
 void wrong_position(navy_t *navy, char *s);
 int find_error(navy_t *navy, char *s);
+int find_win(navy_t *navy);
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,

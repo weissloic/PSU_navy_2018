@@ -85,15 +85,15 @@ int main(int ac, char **av)
     navy_t *navy = malloc(sizeof(navy_t));
     char **map;
     navy->turn = 0;
+    navy->ac = ac;
 
     print_map(navy);
     print_empty(navy);
-    navy->create_empty_map = navy->create_map;
     map = find_positions(av[1], navy);
     put_my_boats(navy, map);
 
     while (1) {
-        attack_turn(navy);
+        attack_turn(navy) == 0;
     }
     return(0);
 }

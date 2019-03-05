@@ -30,6 +30,7 @@ int print_game_boards(navy_t *navy)
         my_printf("%s\n", navy->create_empty_map[y]);
     }
     my_printf("\n");
+    find_win(navy);
     navy->turn++;
 }
 
