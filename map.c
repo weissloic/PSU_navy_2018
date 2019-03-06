@@ -121,7 +121,7 @@ int main(int ac, char **av)
     if (ac == 3) {
         producer_pid = my_getnbr(av[1]);
         kill(producer_pid, SIGUSR2);
-        my_printf("my_pid: %d\n", game->pid_glob);
+        my_printf("my_pid: %d\n", getpid());
         my_printf("successfully connected\n");
         //game->counter++;
         print_map(navy);
