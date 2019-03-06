@@ -121,6 +121,8 @@ int main(int ac, char **av)
     if (ac == 3) {
         producer_pid = my_getnbr(av[1]);
         kill(producer_pid, SIGUSR2);
+        my_printf("my_pid: %d\n", game->pid_glob);
+        my_printf("successfully connected\n");
         //game->counter++;
         print_map(navy);
         print_empty(navy);
@@ -138,8 +140,8 @@ int main(int ac, char **av)
         return(0);
     }
     else {
-        my_printf("pid = %d\n", getpid());
-        my_printf("Waiting for ennemy connections\n");
+        my_printf("my_pid = %d\n", getpid());
+        my_printf("waiting for enemy connection...\n");
 
         while (1) {
             if (game->counter == 1) {
