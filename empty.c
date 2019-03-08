@@ -78,6 +78,6 @@ char  *wrong_position(navy_t *navy, char *s)
     my_printf("Wrong position\n");
     my_printf("attack: ");
     s = get_next_line(0);
-    s= find_error(navy, s);
+    s = find_error(navy, s);
     return (s);
 }
