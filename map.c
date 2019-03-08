@@ -119,17 +119,17 @@ int main(int ac, char **av)
     sigaction(SIGUSR2, &act, NULL);
 
     if (ac == 3) {
-        producer_pid = my_getnbr(av[1]);
-        kill(producer_pid, SIGUSR2);
-        my_printf("my_pid: %d\n", getpid());
-        my_printf("successfully connected\n");
-        //game->counter++;
         print_map(navy);
         print_empty(navy);
         map = find_positions(av[2], navy);
         if (find_positions(av[2], navy) == 84) {
             return (84);
         }
+        producer_pid = my_getnbr(av[1]);
+        kill(producer_pid, SIGUSR2);
+        my_printf("my_pid: %d\n", getpid());
+        my_printf("successfully connected\n");
+        //game->counter++;
         put_my_boats(navy, map);
 
         while (1) {
@@ -140,17 +140,17 @@ int main(int ac, char **av)
         return(0);
     }
     else {
+        print_map(navy);
+        print_empty(navy);
+        map = find_positions(av[1], navy);
+        if (find_positions(av[1], navy) == 84) {
+            return (84);
+        }
         my_printf("my_pid = %d\n", getpid());
-        my_printf("waiting for enemy connection...\n");
-
+        my_printf("waiting for enemy connection...\n\n");
         while (1) {
             if (game->counter == 1) {
-            print_map(navy);
-            print_empty(navy);
-            map = find_positions(av[1], navy);
-            if (find_positions(av[1], navy) == 84) {
-                return (84);
-            }
+            my_printf("ennemy connected\n");
             put_my_boats(navy, map);
 
             while (1) {
