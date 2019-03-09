@@ -69,6 +69,8 @@ int diagonal_positions(char **tab)
     for (int i = 0; i != 4; i++) {
         if (tab[i][3] != tab[i][6] && tab[i][2] != tab[i][5]) {
             return (84);
+        } else if (tab[i][3] == tab[i][6] && tab[i][2] == tab[i][5]) {
+            return (84);
         }
     }
 }

@@ -42,10 +42,16 @@ int check_errors(char **tab)
     if (check_boats(tab) == 84) {
         return (84);
     }
-    check_points(tab);
+    if (check_points(tab) == 84) {
+        return (84);
+    }
     if (check_first(tab) == 84) {
         return (84);
     }
-    check_final_square(tab);
-    diagonal_positions(tab);
+    if (check_final_square(tab)== 84) {
+        return (84);
+    }
+    if (diagonal_positions(tab) == 84) {
+        return (84);
+    }
 }
