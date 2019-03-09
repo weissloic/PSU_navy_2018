@@ -129,7 +129,6 @@ int main(int ac, char **av)
         kill(producer_pid, SIGUSR2);
         my_printf("my_pid: %d\n", getpid());
         my_printf("successfully connected\n");
-        //game->counter++;
         put_my_boats(navy, map);
 
         while (1) {
@@ -138,8 +137,7 @@ int main(int ac, char **av)
             }
         }
         return(0);
-    }
-    else {
+    } else {
         print_map(navy);
         print_empty(navy);
         map = find_positions(av[1], navy);
