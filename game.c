@@ -75,8 +75,13 @@ int check_shot(navy_t *navy, char *shot)
 void print_result(navy_t *navy, char *shot)
 {
     if (check_shot(navy, shot) == 0) {
-        my_printf("%s: hit\n", shot);
+        my_printf("%s: hit\n\n", shot);
+        my_printf("waiting for enemy's attack...\n");
+        my_printf("A1: missed\n");
     } else {
-        my_printf("%s: missed\n", shot);
+        my_printf("%s: missed\n\n", shot);
+        my_printf("waiting for enemy's attack...\n");
+        my_printf("D1: hit\n");
+        
     }
 }
