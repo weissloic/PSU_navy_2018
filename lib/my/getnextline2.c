@@ -19,7 +19,8 @@ char *str_concat(char *str1, char *str2, int start_cpy, int stop_cpy)
             str3[start] = str1[start];
     }
     full = start;
-    for (strnbr = start_cpy; str2[strnbr] != '\0' && strnbr < stop_cpy; strnbr += 1\
+    for (strnbr = start_cpy; str2[strnbr] != '\0' &&
+    strnbr < stop_cpy; strnbr += 1\
     , full += 1)
         str3[full] = str2[strnbr];
     str3[full] = '\0';

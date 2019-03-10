@@ -20,7 +20,6 @@ char *find_my_file(char *filepath)
     char *buffer = malloc(sizeof(char) * 100);
 
     if (fd == -1) {
-        my_putstr("Error with open\n");
         return (84);
     }
     read(fd, buffer, 31);
@@ -60,6 +59,8 @@ char **find_positions(char *filepath, navy_t *navy)
 {
     char **map = malloc(sizeof(char *) * 12);
     char *buffer = find_my_file(filepath);
+    if (find_my_file(filepath) == 84)
+        return (84);
     char **position = malloc(sizeof(char *) * 10);
     navy->value_one = malloc(sizeof(int *) * 4);
     navy->value_two = malloc(sizeof(int *) * 4);

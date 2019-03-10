@@ -54,7 +54,7 @@ int player_one(char **map, char **av, navy_t *navy)
     my_printf("waiting for enemy connection...\n\n");
     while (1) {
         if (game->counter == 1) {
-            my_printf("ennemy connected\n");
+            my_printf("enemy connected\n");
             put_my_boats(navy, map);
             if (attack_turn(navy) == 84)
                 return (84);
