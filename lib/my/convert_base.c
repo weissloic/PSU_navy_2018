@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "../../include/my.h"
 
-int convert_tobase(int nbr, char* base)
+int convert_tobase(int nbr, char *base)
 {
     int len_base = my_strlen(base);
 

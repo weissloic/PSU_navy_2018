@@ -16,7 +16,7 @@ void display_char(va_list ap)
 
 void display_string(va_list ap)
 {
-    my_putstr(va_arg(ap, char*));
+    my_putstr(va_arg(ap, char *));
 }
 
 void display_int(va_list ap)

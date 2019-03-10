@@ -57,7 +57,7 @@ char *str_concat(char *full_str, char *str, int start_cpy, int stop_cpy)
 
 static char *manage_str(char *full_str, char *str, int *idx_retline)
 {
-    full_str = str_concat(full_str, str, *idx_retline + 1, find_retline(str,\
+    full_str = str_concat(full_str, str, *idx_retline + 1, find_retline(str, \
     *idx_retline + 1, READ_SIZE));
     *idx_retline = find_retline(str, *idx_retline + 1, READ_SIZE);
     return full_str;
@@ -86,4 +86,3 @@ char *get_next_line(int fd)
         idx_retline = READ_SIZE;
     return full_str;
 }
-

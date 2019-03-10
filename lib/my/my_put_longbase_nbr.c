@@ -6,7 +6,7 @@
 */
 #include "../../include/my.h"
 
-long my_put_longbase_nbr(unsigned int nbr, char* base)
+long my_put_longbase_nbr(unsigned int nbr, char *base)
 {
     int len_base = my_strlen(base);
 

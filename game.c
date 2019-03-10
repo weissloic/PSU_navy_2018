@@ -82,6 +82,5 @@ void print_result(navy_t *navy, char *shot)
         my_printf("%s: missed\n\n", shot);
         my_printf("waiting for enemy's attack...\n");
         my_printf("D1: hit\n");
-        
     }
 }

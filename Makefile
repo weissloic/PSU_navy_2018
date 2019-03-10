@@ -8,6 +8,7 @@
 GCC=            gcc
 
 SRC=		map.c\
+			map2.c \
 			errors.c\
 			positions_errors.c\
 			square.c\
@@ -16,7 +17,8 @@ SRC=		map.c\
 			pipapo.c\
 			empty.c\
 			game.c\
-			attack.c
+			attack.c\
+			malloc.c
 
 LIB=		-Llib/my/ -lmy
 

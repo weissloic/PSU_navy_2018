@@ -61,6 +61,7 @@ void fill_map_three2(navy_t *navy)
             navy->create_empty_map[fill_map][i] = ' ';
     }
 }
+
 void print_empty(navy_t *navy)
 {
     navy->create_empty_map = malloc(sizeof(char *) * 18);

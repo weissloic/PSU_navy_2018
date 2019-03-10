@@ -81,7 +81,7 @@ void display_int(va_list ap);
 void display_string(va_list ap);
 void display_char(va_list ap);
 void display_pointer(va_list ap);
-int convert_tobase(int nbr, char* base);
+int convert_tobase(int nbr, char *base);
 void convert_to_bin(va_list ap);
 void convert_to_octo(va_list ap);
 void convert_to_hexa(va_list ap);
@@ -126,6 +126,8 @@ char *find_error(navy_t *navy, char *s);
 int find_win(navy_t *navy);
 int first_blocks(navy_t *navy, char boat, int nbr);
 int first_boat(navy_t *navy, char boat, int nbr);
+void handler(int signal, siginfo_t *info, void *context);
+
 static void (*ptr1[9])(va_list) = {
     &display_int,
     &display_int,
