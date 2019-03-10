@@ -144,7 +144,7 @@ int main(int ac, char **av)
         if (find_positions(av[1], navy) == 84) {
             return (84);
         }
-        my_printf("my_pid = %d\n", getpid());
+        my_printf("my_pid: %d\n", getpid());
         my_printf("waiting for enemy connection...\n\n");
         while (1) {
             if (game->counter == 1) {
