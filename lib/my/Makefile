@@ -45,7 +45,9 @@ SRC	=	my_compute_power_rec.c		\
 		display_flags.c			\
 		my_put_lnbr.c			\
 		my_put_ustr.c 			\
-		my_put_longbase_nbr.c
+		my_put_longbase_nbr.c 	\
+		getnextline2.c 			\
+		getnextline3.c
 
 OBJ	=	$(SRC:.c=.o)
 
